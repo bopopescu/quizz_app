@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create new question
+{% endblock %}
+
+
+{% block content_title %}
+    <h3>New Question</h3>
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="col-md-6">
+    <form action="{{ url_for('create_question') }}" method='POST'>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label(class='control-label') }}
+                {{ field(class='form-control') }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Create</button>
+
+    </form>
+  </div>
+{% endblock %}

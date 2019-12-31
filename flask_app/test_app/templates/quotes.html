@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Best quotes
+{% endblock %}
+
+{% block content_title %}
+  <h4>Цитаты</h4>
+{% endblock %}
+<br />
+{% block content %}
+    <div class="col-md-6">
+      {% for quote in quotes %}
+          <p>
+              {{ quote_question }}
+          </p>
+      {% endfor %}
+{% endblock %}
