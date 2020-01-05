@@ -37,12 +37,19 @@ def create_question():
 @app.route('/')
 def base():
     welcome = "Welcome to flask application about quotes"
-    return render_template('base.html',)
+    return render_template('base.html',welcome=welcome)
 
 @app.route('/quotes')
 def quotes():
+    page = request.args.get('page')
+    if page and page.isdigit():
+        page = int(page)
+    else:
+        page = 1
+
     quotes = Quizz.query.all()
-    return render_template('quotes.html', quotes=quotes)
+    pages = Quizz.query.paginate(page=page, per_page=6)
+    return render_template('quotes.html', quotes=quotes, pages=pages)
 
 @app.route('/test')
 def test():
