@@ -5,7 +5,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-
+from flask_security import SQLAlchemyUserDatastore, Security
 
 
 app = Flask(__name__)
@@ -29,3 +29,8 @@ manager.add_command('db', MigrateCommand)
 from models import *
 admin = Admin(app)
 admin.add_view(ModelView(Quizz, db.session))
+admin.add_view(ModelView(User, db.session))
+
+### Flask_security ###
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+security = Security(app, user_datastore)
