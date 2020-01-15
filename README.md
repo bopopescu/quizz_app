@@ -1,2 +1,6 @@
 # quizz_app
-Quizz application about quotes
+Quiz application about quotes
+
+Flask
+SQLAlchemy
+Python
